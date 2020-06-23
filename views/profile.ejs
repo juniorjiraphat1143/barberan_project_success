@@ -1,0 +1,380 @@
+<%- include("partials/header1") %>
+
+<html>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+.accordion,.button {
+  background-color: rgb(238, 238, 238);
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  text-align: center;
+  border-radius: 1em;
+
+}
+
+
+
+
+
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: rgb(255, 85, 85);
+  color: white;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+   border-radius: 1em;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+.accordion:after,.button:after {
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+#hidden{
+  display: none;
+}
+#hidden.showtime {
+  display: flex;
+}
+
+
+/* Footer */
+.accordion {
+  background-color: rgb(238, 238, 238);
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  text-align: center;
+  border-radius: 1em;
+
+}
+
+.active, .accordion:hover,.active,.button:hover {
+  background-color: rgb(218, 218, 218);
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+.accordion:after,.button:after {
+  font-size: 15px;
+  float: right;
+  margin-left: 5px;
+}
+.inline {
+     display: inline-block;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+
+
+
+<body style="background-image: url('https://translatesongstudio.com/wp-content/uploads/2018/09/white-background-4.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%;">
+    <div style="width: 90%; padding-left: 10%;">
+      <div class="card" align=center >
+        <% User.forEach(function(user){ %>
+          <%  if(target_id === user.id){ %> 
+          <img style="border: 1px solid #ddd; border-radius: 50%; width: 250px; height: 250px;" src="<%= user.image %>">
+          <br><br>
+          <h3 style="color: rgb(211, 172, 0);"><%= user.name %></i></h3>
+          <br>
+          <h4 style="color: rgb(143, 143, 143);">Username : <%= user.username %></h4>
+          <h4 style="color: rgb(143, 143, 143);">Birth day : <%= user.date %></h4>
+          <h4 style="color: rgb(143, 143, 143);">Member since : <%= user.member_since %></h4>
+          <% } %>
+        <% }); %> 
+      </div>
+    </div>
+    <div class="row" style="width: 80%; padding-left: 20%;">
+    <div >
+
+
+
+
+      
+      <% Post4selves.reverse().forEach(function(post4selves){ %>
+        <%  if(target_id === post4selves.Post_by){ %> 
+          <%  if(post4selves.tag !== "Blood-donation"){ %>
+            <div class="card nbd nu" style="width: 100%; float: right; border-radius: 1em;">
+          <% } %>
+          <%  if(post4selves.tag === "Blood-donation"){ %>
+            <div class="card nu" style="width: 100%; float: right; border-radius: 1em;">
+          <% } %>
+        <% } %>
+        <%  if(target_id !== post4selves.Post_by){ %> 
+          <%  if(post4selves.tag !== "Blood-donation"){ %>
+            <div class="card nbd nu pb" style="width: 100%; float: right; border-radius: 1em;">
+          <% } %>
+          <%  if(post4selves.tag === "Blood-donation"){ %>
+            <div class="card nu pb" style="width: 100%; float: right; border-radius: 1em;">
+          <% } %>
+        <% } %>
+          <input type="hidden" name="id" value=<%= currentUser._id %>>
+          <div>
+            <h3 class="inline" style="color: rgb(211, 172, 0);"><img style="border: 1px solid #ddd; border-radius: 50%; width: 60px; height: 60px; object-fit:cover;" src="<%= post4selves.userpic %>">&nbsp;&nbsp;
+              <%  if(currentUser.id === post4selves.Post_by){ %>
+                <a  href="/users/home"><%= post4selves.name %></i> </a></h3>
+              <% } %>
+              <% if(currentUser.id !== post4selves.Post_by){ %>
+                <a  href="/users/<%= post4selves.Post_by %>/profile"><%= post4selves.name %></i> </a></h3>
+              <% } %>
+              <%  if(post4selves.tag !== undefined){ %>
+                <h3 class="inline" style="color: rgb(255, 85, 85); margin-top: -10; margin-right: 100;">&nbsp; &#9654; &nbsp;<h3 class="inline fas fa-heartbeat" style="color: rgb(255, 255, 255); border: 3px solid rgb(255, 85, 85); border-radius: 0.2em; background-color: rgb(255, 85, 85);">&nbsp;<%= post4selves.tag %></h3></h3>
+              <% } %>
+            <%  if(currentUser.id === post4selves.id){ %>                 
+              <div style="float: right; margin-top: 0%;">                  
+                <form action="/users/<%= post4selves._id %>?_method=DELETE " method="POST">
+                  <a href="/users/editpost/<%= post4selves._id %>" ><i class='fas fa-edit' style='font-size:15px'> Edit</i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button style="border-radius: 0em; border: 0px solid; color: red;"><i class="fa fa-close" style="font-size:20px"></i></button>
+                </form>
+              </div>
+            <% } %>
+          </div>
+          <div id="comment" style="color: rgb(0, 218, 218);">Date : <%= post4selves.date %></div>
+          <br>  
+          <div><%= post4selves.text %></div>
+          <br>  <br>
+          <img style="display: block; margin-left: auto; margin-right: auto; width:40%;" src="<%= post4selves.image %>">
+          <br><br>
+          <%  if(post4selves.number_like != 0){  %>
+            <i class='far fa-smile-wink' style="font-size: 20px;" >&nbsp</i>
+            <%= post4selves.number_like %>
+            <%} %>          
+ 
+
+            
+              
+          <form  action="/users/public"  method="POST">
+          <textarea id="subject" name="post" placeholder="Comment something.." style="display: none;"><%= post4selves._id %></textarea>
+          <div>
+            <br><br><br>
+            <img style="border: 1px solid #ddd; border-radius: 50%; width: 40px; height: 40px; object-fit:cover;" src="<%= currentUser.image %>">
+            <input style="width: 85%; border-radius: 1em; height: 50px; border: 1px solid"     type="text" name="comment" placeholder="Comment something.."    > 
+            <button type="submit" style="background-color:green; border-color: rgb(211, 211, 211); border-radius: 0.5em; border: 1px solid; color: white;">comment</i></button>          
+          </div>
+        </form>
+
+        <br>
+        <form action="/users/<%= post4selves._id %>?_method=PUT" method="POST"  >
+          <input type="hidden" name="uid" value="<%= currentUser._id %>">   
+          <div> <button class="button" style="width: 20%; float: left;margin-top: 2%; height: 58px;"><i class='far fa-smile-wink' style='font-size:18px' >   &nbsp&nbsp Like </i></button></div>
+          </form> 
+
+        <button class="accordion" id="<%= post4selves._id %>"  style="width: 79%; float: right; font-size:15px; margin-top: 2%;">Comment</button>  
+        <div class="panel"  style="width: 100%;">      
+          <div class="card" style="width: 100%; ">
+            <% Commento.forEach(function(comment){ %>
+              <% if(post4selves._id == comment.post){ %>
+
+              <div class="row commentcheck" id="<%= comment.post %>">
+
+                <div class="col-md-2"  style="margin-top: 2%;"  > <img style="border: 1px solid #ddd; border-radius: 50%; width: 25%; " src="<%= comment.author_image %>"></div><br>
+              
+              
+                <div  class="col-md-10"   style="width: 90%; border-radius: 2em; background-color: rgb(238, 238, 238); margin-top: 2%;  ">
+                
+                
+                  <%  if(currentUser.id === comment.author_id){ %>
+                    <div><strong><a  href="/users/home"> <i style='font-size:15px; color: blue;'><%= comment.author %></i> </a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= comment.date %>&nbsp;&nbsp;<%= comment.time %>
+                  <% } %>
+                  <% if(currentUser.id !== comment.author_id){ %>
+                    <div><strong><a  href="/users/<%= comment.author_id %>/profile"> <i style='font-size:15px'><%= comment.author %></i> </a></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= comment.date %>&nbsp;&nbsp;<%= comment.time %>
+                  <% } %>
+                   
+
+
+           
+
+
+
+                </div>
+                <br>
+                <div><%= comment.text %>&nbsp;&nbsp;&nbsp;&nbsp;  
+                <div>
+                       <!-- buttom section   delete and delete -->
+                       <%  if(currentUser.id === post4selves.id && currentUser.id !== comment.author_id){ %> 
+                        <div style="float: right; margin-top: 0%; font-size: 13px;">
+                          <form action="/users/<%= comment._id %>?_method=DELETE " method="POST">
+                            <button style="border-radius: 0.em; border: 0px solid;"><i class="fa fa-close" style="font-size:20px"></i></button>     &nbsp;&nbsp;
+                          </div>
+                      <%}%> 
+                      <% if(currentUser.id === comment.author_id){ %>           
+                      <div style="float: right; margin-top: 0%; font-size: 13px;">
+                      <form action="/users/<%= comment._id %>?_method=DELETE " method="POST">
+                        <a  href="/users/editpost/editcomment/<%= comment._id %>">  <i class='fas fa-edit' style='font-size:15px'> Edit</i>    </a> 
+                        <button style="border-radius: 0.em; border: 0px solid;"><i class="fa fa-close" style="font-size:20px"></i></button>     &nbsp;&nbsp;
+                      </div>
+                      <%}%> 
+                      <!-- edit and delete-->
+                </div>  
+                <div>
+                  
+                </div>  
+                </form>
+                </div>
+                </div>                
+                <br><br>
+                <br>
+              </div>
+              <% } %>            
+            <% }); %>
+          </div>
+        </div>
+        </div> 
+      <% }); %>   
+      <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+              panel.style.display = "none";               
+            } else {
+              panel.style.display = "block";
+            }
+          });
+        }
+        </script>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+    var myIndex = 0;
+    carousel();
+    function carousel() {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+      }
+      myIndex++;
+      if (myIndex > x.length) {myIndex = 1}    
+      x[myIndex-1].style.display = "block";  
+      setTimeout(carousel, 4000);    
+    }
+    </script>
+    <script>
+    var l = document.getElementsByClassName("pb");
+      for(var i = 0 ; i <l.length ; i++){           
+        var y = document.querySelectorAll('.pb')[i];
+      if (y.style.display === "none") {
+        y.style.display = "none";
+      } else {
+        y.style.display = "none";
+      }
+    }
+
+      var pnu = document.getElementsByClassName("accordion");
+      var cnu = document.getElementsByClassName("commentcheck");
+      var ccount = 0;
+      // var test = document.getElementsByClassName("accordion")[0];
+      // var test2 = document.getElementsByClassName("commentcheck")[0];
+      // var pid = $(test).attr('id');
+      // var cid = $(test2).attr('id');
+      for (a = 0; a < pnu.length; a++) {
+        var pcbase = document.getElementsByClassName("accordion")[a];
+        var pibase = $(pcbase).attr('id');
+        for (b = 0; b < pnu.length ; b++) {
+          var cbase = document.getElementsByClassName("commentcheck")[b];
+          var ibase = $(cbase).attr('id');
+          if(ibase === pibase){ccount++;}
+        }
+        document.getElementById(pibase).innerHTML = ccount+" Comment";
+        ccount = 0;
+      }
+      
+  </script>    
+
+
+<%- include("partials/footer") %>

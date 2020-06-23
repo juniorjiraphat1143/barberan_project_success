@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<style>
+#bg01{
+  background-image: url('ihttps://3.bp.blogspot.com/_enVLP57PrXw/S_C1e9etgZI/AAAAAAAAASA/mzCwFYdIS44/s1600/wallpaper.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+}
+h1{
+  color: blue;
+}
+
+
+button {
+color: #1D9AF2;
+background-color: #292D3E;
+border: 1px solid #1D9AF2;
+border-radius: 4px;
+padding: 15px 18px 30px 15px
+cursor: pointer;
+height:40px;
+font-size:14px;
+box-shadow: 0 0 4px #999;
+background-position: center;
+transition: background 0.8s;
+}
+button:hover {
+background:#47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+color: white;
+}
+button:active{
+background-color:#292d3e;
+background-size: 100%;
+transition: background 0s;
+}
+
+
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+}
+
+.content {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+
+#myBtn {
+  width: 10%;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: red;
+  color: #fff;
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  background: #ddd;
+  color: black;
+}
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 800px){
+  video{
+    display: none;
+  }
+ 
+}
+
+
+
+</style>
+
+  </head>
+    <%- include("partials/header") %>
+     <video autoplay muted loop id="myVideo" class="cpj">
+      <source src="heart.mp4" type="video/mp4" style="width: auto; height: auto;">
+    </video> 
+
+    <div class="content">
+      <div style="text-align: center; font-weight: bold; font-size: 40px;" >BARBERAN PROJECT</div>
+      <div style="text-align: center; font-size: 20px;" > You have two hands, one to help youself</div>
+      <div style="text-align: center; font-size: 20px;"> the second to help <span style="color: red;">other</span> . . .</div>
+      <br>
+      <div style="text-align: center;"><button style="background-color: #47a7f5;" class="leftcolumn"><a class="page-scroll" href="users/register"><span style="color: white;">Community</span></a></button ></div> 
+    </div>
+    
+    
+
+
+
+    </body>
+    </html>
