@@ -7,7 +7,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var SEG         = require('./routes/SEG');
 var editpc      = require('./routes/editpc');
+
 var app = express();
+const port = process.evn.PORT || 3000;
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var passportLocal= require('passport-local');
