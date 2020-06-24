@@ -7,11 +7,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var SEG         = require('./routes/SEG');
 var editpc      = require('./routes/editpc');
-
 var app = express();
-const port = process.evn.PORT || 3000;
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
-
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var passportLocal= require('passport-local');
@@ -22,7 +18,7 @@ var methodOverride = require('method-override');
 const User = require('./model/user');
 const Post4selves = require('./model/post4selves');
 const Commento = require('./model/comment');
-mongoose.connect('mongodb+srv://junearza:love22na@cluster0-xs4ye.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true})
+mongoose.connect('mongodb://heroku_js83dqbf:r8fpvm5km9733421mr6b7055sg@ds247619.mlab.com:47619/heroku_js83dqbf',{useNewUrlParser: true,useUnifiedTopology: true})
 .then(() => console.log('connect server..'))
 .catch(err => console.log('cannot'));
 middleware = require('./middleware');
