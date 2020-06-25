@@ -224,7 +224,9 @@ background-image: url('https://img.freepik.com/free-vector/abstract-paper-hexago
             <%  if(currentUser.id === post4selves.id || currentUser.permission === "admin"){ %>                 
               <div style="float: right; margin-top: 0%;">                  
                 <form action="/users/<%= post4selves._id %>?_method=DELETE " method="POST">
+                  <%  if(currentUser.id === post4selves.id){ %> 
                   <a href="/users/editpost/<%= post4selves._id %>" ><i class='fas fa-edit' style='font-size:15px'> Edit</i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <% } %>
                     <button style="border-radius: 0em; border: 0px solid; color: red;"><i class="fa fa-close" style="font-size:20px"></i></button>
                 </form>
               </div>
@@ -290,10 +292,12 @@ background-image: url('https://img.freepik.com/free-vector/abstract-paper-hexago
                             <button style="border-radius: 0.em; border: 0px solid;"><i class="fa fa-close" style="font-size:20px"></i></button>     &nbsp;&nbsp;
                           </div>
                       <%}%> 
-                      <% if(currentUser.id === comment.author_id){ %>           
+                      <% if(currentUser.id === comment.author_id || currentUser.permission === "admin"){ %>           
                       <div style="float: right; margin-top: 0%; font-size: 13px;">
                       <form action="/users/<%= comment._id %>?_method=DELETE " method="POST">
+                        <% if(currentUser.id === comment.author_id){ %> 
                         <a  href="/users/editpost/editcomment/<%= comment._id %>">  <i class='fas fa-edit' style='font-size:15px'> Edit</i>    </a> 
+                        <%}%> 
                         <button style="border-radius: 0.em; border: 0px solid;"><i class="fa fa-close" style="font-size:20px"></i></button>     &nbsp;&nbsp;
                       </div>
                       <%}%> 
