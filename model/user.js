@@ -9,6 +9,7 @@ let UserSchema = new mongoose.Schema({
     date     : String,
     member_since : String,
     image    : String,
+    permission    : String
     
 });
 UserSchema.plugin(passportLocalMongoose);
