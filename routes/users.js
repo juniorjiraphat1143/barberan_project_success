@@ -66,7 +66,7 @@ router.post('/register',function(req,res){
           email
         });
       }
-      else {User.register(new User({username : req.body.username , date :req.body.date , image : req.body.image , name : req.body.fname , member_since : members}),req.body.password,function(err,user){
+      else {User.register(new User({username : req.body.username , date :req.body.date , image : req.body.image , name : req.body.fname , member_since : members , permission : admin}),req.body.password,function(err,user){
           if(err){
             
             console.log(err);

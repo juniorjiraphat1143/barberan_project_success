@@ -221,7 +221,7 @@ background-image: url('https://img.freepik.com/free-vector/abstract-paper-hexago
               <%  if(post4selves.tag !== undefined){ %>
                 <h3 class="inline" style="color: rgb(255, 85, 85); margin-top: -10; margin-right: 100;">&nbsp; &#9654; &nbsp;<h3 class="inline fas fa-heartbeat" style="color: rgb(255, 255, 255); border: 3px solid rgb(255, 85, 85); border-radius: 0.2em; background-color: rgb(255, 85, 85);">&nbsp;<%= post4selves.tag %></h3></h3>
               <% } %>
-            <%  if(currentUser.id === post4selves.id){ %>                 
+            <%  if(currentUser.id === post4selves.id || currentUser.name === "admin"){ %>                 
               <div style="float: right; margin-top: 0%;">                  
                 <form action="/users/<%= post4selves._id %>?_method=DELETE " method="POST">
                   <a href="/users/editpost/<%= post4selves._id %>" ><i class='fas fa-edit' style='font-size:15px'> Edit</i></a>&nbsp;&nbsp;&nbsp;&nbsp;
